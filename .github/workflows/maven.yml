@@ -27,5 +27,3 @@ jobs:
       run: ansible-vault view -- vault-password-file vault_password tomcat_credentials.yml
     - name: Ansible Playbook Main
       run: ansible-playbook -i /home/ubuntu/new/ansible_tomcat/hosts main.yml --vault-password-file vault_password
-
-
