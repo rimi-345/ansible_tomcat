@@ -19,10 +19,12 @@ jobs:
         java-version: '1.8'
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: Id
+      run: echo $ {{secrects .VAULT_PASSWORD}} >vault_password
     - name: view key
       run: cat vault_password
     - name: Ansible-Vault
-      run: ansible-vault view --secrets.VAULT_PASSWORD vault_password tomcat_credentials.yml
+      run: ansible-vault view -- vault_password-file vault password tomcat_credentials.yml
     - name: Ansible Playbook Main
       run: ansible-playbook -i /home/ubuntu/new/ansible_tomcat/hosts main.yml --vault-password-file vault_password
 
