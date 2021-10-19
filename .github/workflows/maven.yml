@@ -1,4 +1,7 @@
 
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
 name: Tomcat-deploy
 
 on: [push]
@@ -16,12 +19,13 @@ jobs:
         java-version: '1.8'
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    - name: Id
-      run: echo ${{ secrets.VAULT_PASSWORD }} > vault_password
     - name: view key
       run: cat vault_password
+    - name: Id
+      run: echo ${{ secrets.VAULT_PASSWORD }} > vault_password
     - name: Ansible-Vault
-      run: ansible-vault view --vault-password-file vault_password tomcat_credentials.yml
+      run: ansible-vault view --vault-password-file  vault_password tomcat_credentials.yml
     - name: Ansible Playbook Main
       run: ansible-playbook -i /home/ubuntu/new/ansible_tomcat/hosts main.yml --vault-password-file vault_password
+
 
