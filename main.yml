@@ -6,4 +6,4 @@
     - tomcat_credentials.yml 
   tasks: 
   - name: Tomcat
-    command: curl -v -u "{{ user_name }}":"{{ password }}" -T /home/ubuntu/actions-runner/_work/ansible_tomcat/ansible_tomcat/target/WebApp-pipeline.war "http://13.127.244.171:8080//manager/text/deploy?path=/web_rutu&update=true"
+    command: curl -v -u "{{ user_name }}":"{{ password }}" -T /home/ubuntu/actions-runner/_work/ansible_tomcat/ansible_tomcat/target/WebApp-pipeline.war "http://13.127.127.3:8080//manager/text/deploy?path=/web_rutu&update=true"
